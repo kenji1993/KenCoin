@@ -35,7 +35,7 @@ const CoinItem = ({coin}) => {
 const styles = StyleSheet.create({
     containerItem: {
         backgroundColor: '#121212',
-        paddingTop: 10,
+        paddingTop: 15,
         flexDirection: 'row',
         justifyContent: 'space-between'
     },

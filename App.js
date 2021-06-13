@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, FlatList, StyleSheet, TextInput, StatusBar } from 'react-native'
-import CoinItem from './components/CoinItem'
+import { View, Text, FlatList, StyleSheet, TextInput, StatusBar, TouchableOpacity } from 'react-native'
+import CoinItem from './components/CoinItem/CoinItem'
+import Title from './components/TitleBar/TitleBar'
 
 const App = () => {
 
   const [coins, setCoins] = useState([])
   const [search, setSearch] = useState('')
-  const [refresh, setrefresh] = useState(false)
+  const [refresh, setRefresh] = useState(false)
 
   const loadData = async() => {
     try {
@@ -15,12 +16,13 @@ const App = () => {
       setCoins(data)
     } catch(err) {
       console.error(err)
+      throw err
     }
     
   }
 
-  useEffect(() => {
-    loadData()
+  useEffect(async() => {
+    await loadData()
   }, [])
 
   const refreshData = async() => {
@@ -32,16 +34,24 @@ const App = () => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#141414"/>
-        <View style={styles.header}>
-          <Text style={styles.title}>
-            Kencoin
-          </Text>
+        <Title/>
+        <View style={styles.searchBar}>
           <TextInput 
-            style={styles.searchInput}
-            placeholder="Buscar"
-            placeholderTextColor= "#fff"
-            onChangeText={(e) => setSearch(e.toLocaleLowerCase()) }
-          />
+              style={styles.searchInput}
+              placeholder="Buscar"
+              value={search}
+              placeholderTextColor= "#fff"
+              onChangeText={(e) => setSearch(e.toLocaleLowerCase()) }
+            />
+          <TouchableOpacity
+              onPress={() => setSearch('')}
+              style={styles.cleanOpacity}
+          >
+            <Text
+                style={styles.clean}
+              >x</Text>
+          </TouchableOpacity>
+            
         </View>
         <FlatList
           style={styles.list}
@@ -65,26 +75,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
   },
-  title: {
-    color: '#fff',
-    marginTop: 10,
-    fontSize: 30,
-  },
   list: {
     width: '90%'
   },
-  header: {
-    flexDirection:'row',
-    justifyContent: 'space-around',
-    width: '90%',
-    marginBottom: 10,
-  },
+  searchBar: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 10
+  },  
   searchInput: {
     color: '#fff',
     borderBottomColor: '#4657ce',
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     width: '40%',
     textAlign: 'center',
+  },
+  clean: {
+    color: '#fff',
+    fontSize: 25,
+  },
+  cleanOpacity: {
+    width: 30,
+    height: 30,
+    alignSelf: 'center',
   }
 })
 
