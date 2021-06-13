@@ -8,4 +8,4 @@ Los datos de la API puede ser que no actualicen, no son datos en tiempo real, ca
 
 <p>La app sigue en proceso</p>
 
-<img src="/src/assets/images/kencoinScreeenshot.jpeg">
+<img src="/src/assets/images/kencoinScreenshot.jpeg" alt="App Screenshot">
