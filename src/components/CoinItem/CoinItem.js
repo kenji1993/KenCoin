@@ -1,5 +1,6 @@
 import React from 'react'
-import {View, Text, StyleSheet, Image} from 'react-native'
+import {View, Text, Image} from 'react-native'
+import styles from './styles'
 
 
 const CoinItem = ({coin}) => {
@@ -32,43 +33,5 @@ const CoinItem = ({coin}) => {
     )
 }
 
-const styles = StyleSheet.create({
-    containerItem: {
-        backgroundColor: '#121212',
-        paddingTop: 15,
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-    coinName: {
-        flexDirection: 'row'
-    },
-    text: {
-        color: '#fff',
-    },
-    symbol: {
-        color: '#434343',
-        textTransform: 'uppercase',
-    },
-    image: {
-        width: 30,
-        height: 30
-    },
-    nameContainer: {
-        marginLeft: 10,
-    },
-    textPrice: {
-        color: '#fff',
-        textAlign: 'right'
-    },
-    pricePercentage: {
-        textAlign: 'right'
-    },
-    proPrice: {
-        color: '#00b5b9'
-    },
-    defPrice: {
-        color: '#fc4422'
-    }
-})
 
 export default CoinItem

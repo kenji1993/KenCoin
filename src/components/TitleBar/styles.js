@@ -1,17 +1,4 @@
-import React from 'react'
-import {View, Text, StyleSheet, Image} from 'react-native'
-import kencoinLogo1 from '../../src/assets/images/kencoinLogo1.png'
-
-const TitleBar = () => {
-    return (
-        <View style={styles.header}>
-          <Image 
-            source={kencoinLogo1}
-            style={styles.logo}
-          />
-        </View>
-    )
-}
+import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
     header: {
@@ -33,4 +20,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default TitleBar
+export default styles
