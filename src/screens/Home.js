@@ -1,11 +1,13 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { View, Text, FlatList, StyleSheet, TextInput, StatusBar, TouchableOpacity } from 'react-native'
+import { View, Text, Image, FlatList, StyleSheet, TextInput, StatusBar, TouchableOpacity } from 'react-native'
 import CoinItem from '../components/CoinItem/CoinItem'
 import TitleBar from '../components/TitleBar/TitleBar'
+import hamburguerMenu from '../assets/images/hamburguerMenu.png'
+import { DrawerActions } from '@react-navigation/native'
 
-const Home = () => {
+const Home = ({navigation}) => {
 
     const [coins, setCoins] = useState([])
     const [search, setSearch] = useState('')
@@ -36,6 +38,22 @@ const Home = () => {
     return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#000"/>
+            <TouchableOpacity
+                onPress={() => navigation.dispatch(DrawerActions.openDrawer())} 
+                style={{
+                  position: "absolute",
+                  zIndex: 1,
+                  left: 6,
+                  top: 6,
+                }}>
+              <Image 
+                source={hamburguerMenu}
+                style={{
+                  width: 40,
+                  height: 40,
+                }}
+              />
+            </TouchableOpacity>
         <TitleBar/>
         <View style={styles.searchBar}>
           <TextInput 
@@ -43,7 +61,7 @@ const Home = () => {
               placeholder="Buscar"
               value={search}
               placeholderTextColor= "#fff"
-              onChangeText={(e) => setSearch(e.toLocaleLowerCase()) }
+              onChangeText={(e) => setSearch(e.toLowerCase()) }
             />
           <TouchableOpacity
               onPress={() => setSearch('')}
